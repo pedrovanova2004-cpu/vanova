@@ -1,85 +1,80 @@
 /**
-* PHP Email Form Validation - v3.9
-* URL: https://bootstrapmade.com/php-email-form/
-* Author: BootstrapMade.com
+* Form Validation for Netlify Forms
+* Compatível com Netlify Forms - Sem necessidade de PHP
 */
-(function () {
+
+(function() {
   "use strict";
 
-  let forms = document.querySelectorAll('.php-email-form');
-
-  forms.forEach( function(e) {
-    e.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      let thisForm = this;
-
-      let action = thisForm.getAttribute('action');
-      let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
-      
-      if( ! action ) {
-        displayError(thisForm, 'The form action property is not set!');
-        return;
-      }
-      thisForm.querySelector('.loading').classList.add('d-block');
-      thisForm.querySelector('.error-message').classList.remove('d-block');
-      thisForm.querySelector('.sent-message').classList.remove('d-block');
-
-      let formData = new FormData( thisForm );
-
-      if ( recaptcha ) {
-        if(typeof grecaptcha !== "undefined" ) {
-          grecaptcha.ready(function() {
-            try {
-              grecaptcha.execute(recaptcha, {action: 'php_email_form_submit'})
-              .then(token => {
-                formData.set('recaptcha-response', token);
-                php_email_form_submit(thisForm, action, formData);
-              })
-            } catch(error) {
-              displayError(thisForm, error);
-            }
-          });
-        } else {
-          displayError(thisForm, 'The reCaptcha javascript API url is not loaded!')
+  // Aguardar o DOM carregar completamente
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Selecionar apenas formulários com a classe php-email-form que têm o atributo netlify
+    let forms = document.querySelectorAll('.php-email-form[netlify]');
+    
+    forms.forEach(function(form) {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Obter elementos de feedback
+        let loading = form.querySelector('.loading');
+        let errorDiv = form.querySelector('.error-message');
+        let sentDiv = form.querySelector('.sent-message');
+        
+        // Resetar mensagens
+        if (loading) loading.classList.remove('d-none');
+        if (errorDiv) {
+          errorDiv.classList.add('d-none');
+          errorDiv.innerHTML = '';
         }
-      } else {
-        php_email_form_submit(thisForm, action, formData);
-      }
+        if (sentDiv) sentDiv.classList.add('d-none');
+        
+        // Criar FormData com os dados do formulário
+        let formData = new FormData(form);
+        
+        // Adicionar campo hidden para o Netlify (garantia)
+        if (!formData.has('form-name')) {
+          formData.append('form-name', form.getAttribute('name') || 'contact');
+        }
+        
+        // Enviar para o Netlify
+        fetch('/', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(function(response) {
+          if (response.ok) {
+            if (loading) loading.classList.add('d-none');
+            if (sentDiv) sentDiv.classList.remove('d-none');
+            form.reset();
+            
+            // Esconder mensagem de sucesso após 5 segundos
+            setTimeout(function() {
+              if (sentDiv) sentDiv.classList.add('d-none');
+            }, 5000);
+          } else {
+            throw new Error('Erro ao enviar mensagem. Status: ' + response.status);
+          }
+        })
+        .catch(function(error) {
+          if (loading) loading.classList.add('d-none');
+          if (errorDiv) {
+            errorDiv.innerHTML = error.message || 'Erro ao enviar mensagem. Tente novamente mais tarde.';
+            errorDiv.classList.remove('d-none');
+          }
+          
+          // Esconder mensagem de erro após 5 segundos
+          setTimeout(function() {
+            if (errorDiv) errorDiv.classList.add('d-none');
+          }, 5000);
+        });
+        
+      });
     });
+    
   });
-
-  function php_email_form_submit(thisForm, action, formData) {
-    fetch(action, {
-      method: 'POST',
-      body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
-    })
-    .then(response => {
-      if( response.ok ) {
-        return response.text();
-      } else {
-        throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
-      }
-    })
-    .then(data => {
-      thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
-        thisForm.querySelector('.sent-message').classList.add('d-block');
-        thisForm.reset(); 
-      } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
-      }
-    })
-    .catch((error) => {
-      displayError(thisForm, error);
-    });
-  }
-
-  function displayError(thisForm, error) {
-    thisForm.querySelector('.loading').classList.remove('d-block');
-    thisForm.querySelector('.error-message').innerHTML = error;
-    thisForm.querySelector('.error-message').classList.add('d-block');
-  }
-
+  
 })();

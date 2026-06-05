@@ -4,34 +4,18 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Detalhes do Projeto - Pedro Vanova</title>
-  <meta name="description" content="Detalhes dos projetos desenvolvidos por Pedro Vanova">
-  <meta name="keywords" content="Portfolio, Projetos, Desenvolvimento Web, Marketplace">
-
-  <!-- Favicons -->
+  <title>Detalhes do Projeto - Vanocode</title>
+  <meta name="description" content="Detalhes dos projetos desenvolvidos pela Vanocode">
   <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 </head>
 
 <body class="portfolio-details-page">
-
   <header id="header" class="header dark-background d-flex flex-column">
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
@@ -40,7 +24,7 @@
     </div>
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <h1 class="sitename">Pedro Vanova</h1>
+      <h1 class="sitename">Vanocode</h1>
     </a>
 
     <div class="social-links text-center">
@@ -53,20 +37,18 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="index.html#hero"><i class="bi bi-house navicon"></i>Início</a></li>
-        <li><a href="index.html#about"><i class="bi bi-person navicon"></i>Sobre</a></li>
-        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i>Currículo</a></li>
-        <li><a href="index.html#portfolio" class="active"><i class="bi bi-images navicon"></i>Portfólio</a></li>
-        <li><a href="index.html#services"><i class="bi bi-hdd-stack navicon"></i>Serviços</a></li>
-        <li><a href="index.html#testimonials"><i class="bi bi-chat-dots navicon"></i>Depoimentos</a></li>
-        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i>Contato</a></li>
+        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Início</a></li>
+        <li><a href="#about"><i class="bi bi-person navicon"></i>Sobre</a></li>
+        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i>Currículo</a></li>
+        <li><a href="#portfolio"><i class="bi bi-images navicon"></i>Portfólio</a></li>
+        <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i>Serviços</a></li>
+        <li><a href="#testimonials"><i class="bi bi-chat-dots navicon"></i>Depoimentos</a></li>
+        <li><a href="#contact"><i class="bi bi-envelope navicon"></i>Contato</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="main">
-
-    <!-- Page Title -->
     <div class="page-title dark-background">
       <div class="container d-lg-flex justify-content-between align-items-center">
         <h1 class="mb-2 mb-lg-0">Detalhes do Projeto</h1>
@@ -79,48 +61,36 @@
       </div>
     </div>
 
-    <!-- Portfolio Details Section -->
     <section id="portfolio-details" class="portfolio-details section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper init-swiper">
               <script type="application/json" class="swiper-config">
-                {
-                  "loop": true,
-                  "speed": 600,
-                  "autoplay": { "delay": 5000 },
-                  "slidesPerView": "auto",
-                  "pagination": { "el": ".swiper-pagination", "type": "bullets", "clickable": true }
-                }
+                {"loop": true, "speed": 600, "autoplay": {"delay": 5000}, "slidesPerView": "auto", "pagination": {"el": ".swiper-pagination", "type": "bullets", "clickable": true}}
               </script>
               <div class="swiper-wrapper align-items-center">
-                <div class="swiper-slide"><img src="assets/img/portfolio/app-1.jpg" alt=""></div>
-                <div class="swiper-slide"><img src="assets/img/portfolio/product-1.jpg" alt=""></div>
-                <div class="swiper-slide"><img src="assets/img/portfolio/branding-1.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="assets/img/portfolio/vano-marketplace.png" alt="VANO"
+                    onerror="this.src='assets/img/portfolio/vano-marketplace.png'"></div>
+                <div class="swiper-slide"><img src="assets/img/portfolio/erp-system.png" alt="ERP"
+                    onerror="this.src='assets/img/portfolio/erp-system.png'"></div>
               </div>
               <div class="swiper-pagination"></div>
             </div>
           </div>
-
           <div class="col-lg-4">
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
               <h3>Informações do Projeto</h3>
               <ul id="project-details">
-                <li><strong>Categoria</strong>: <span id="project-category">Web App</span></li>
-                <li><strong>Cliente</strong>: <span id="project-client">Projeto Pessoal</span></li>
-                <li><strong>Data do Projeto</strong>: <span id="project-date">2024</span></li>
-                <li><strong>Tecnologias</strong>: <span id="project-tech">PHP, MySQL, HTML5, CSS3, JavaScript</span>
-                </li>
-                <li><strong>URL do Projeto</strong>: <a href="#" id="project-url">www.exemplo.com</a></li>
+                <li><strong>Categoria</strong>: <span id="project-category">-</span></li>
+                <li><strong>Cliente</strong>: <span id="project-client">-</span></li>
+                <li><strong>Status</strong>: <span id="project-status">-</span></li>
+                <li><strong>Tecnologias</strong>: <span id="project-tech">-</span></li>
               </ul>
             </div>
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2 id="project-title">App de Gestão Escolar</h2>
-              <p id="project-description">
-                Sistema completo desenvolvido em PHP e MySQL para gerenciamento de alunos, professores, turmas, notas e
-                frequência. Interface intuitiva e relatórios avançados.
-              </p>
+              <h2 id="project-title">-</h2>
+              <p id="project-description">-</p>
             </div>
           </div>
         </div>
@@ -131,12 +101,10 @@
   <footer id="footer" class="footer position-relative light-background">
     <div class="container">
       <div class="copyright text-center">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Pedro Vanova</strong> <span>Todos os Direitos
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Vanocode</strong> <span>Todos os Direitos
             Reservados</span></p>
       </div>
-      <div class="credits">
-        Desenvolvido por <a href="https://vanocode.netlify.app/">Vanocode</a>
-      </div>
+      <div class="credits">Desenvolvido por <a href="https://vanocode.netlify.app/">Vanocode</a></div>
     </div>
   </footer>
 
@@ -146,33 +114,26 @@
 
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
-
   <script>
-    // Dynamic content based on URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const projectId = urlParams.get('project');
-
     const projects = {
-      1: { category: "Web App", client: "Projeto Acadêmico", date: "2024", tech: "PHP, MySQL, Bootstrap", title: "App de Gestão Escolar", desc: "Sistema completo para gerenciamento escolar com cadastro de alunos, professores, turmas, lançamento de notas e emissão de relatórios. Desenvolvido como projeto integrador no IMCL.", url: "#" },
-      2: { category: "Marketplace", client: "Luan-tec", date: "2025", tech: "PHP, MySQL, JavaScript, HTML5, CSS3", title: "AutoVends Marketplace", desc: "Plataforma de intermediação de vendas de automóveis com cadastro de vendedores, anúncios dinâmicos, busca avançada e sistema de mensagens entre compradores e vendedores.", url: "#" },
-      3: { category: "Sistema", client: "Luan-tec", date: "2025", tech: "Python, Django, PostgreSQL", title: "Sistema de Mobilidade", desc: "Solução para rastreamento e automação de processos logísticos com integração de GPS, geração de rotas otimizadas e relatórios de desempenho.", url: "#" },
-      4: { category: "Web App", client: "Empresa Local", date: "2024", tech: "PHP, MySQL, JavaScript", title: "Sistema de Recursos Humanos", desc: "Sistema completo de RH com gestão de funcionários, controle de ponto, folha de pagamento, férias e relatórios gerenciais.", url: "#" }
+      1: { category: "Marketplace", client: "Vanocode", status: "Em desenvolvimento", tech: "React Native, Node.js, MongoDB", title: "VANO Marketplace", desc: "Plataforma completa de compras online com integração de pagamentos, chat entre compradores e vendedores, e sistema de entregas. O novo jeito de comprar, vender e receber na palma da sua mão." },
+      2: { category: "Sistema ERP", client: "Vanocode", status: "Em desenvolvimento", tech: "PHP, Laravel, MySQL, React", title: "Vanocode ERP", desc: "Sistema de Gestão Empresarial completo com módulos de RH, Financeiro, Estoque, Vendas e Relatórios Gerenciais. Solução robusta para empresas de todos os portes." },
+      3: { category: "Educação", client: "Vanocode", status: "Em desenvolvimento", tech: "Flutter, Firebase, Node.js", title: "EduConnect", desc: "Aplicativo de aulas ao domicílio e online conectando professores e alunos. Agendamento de aulas, videoconferência integrada e sistema de pagamentos." },
+      4: { category: "Sistema de Gestão", client: "Vanocode", status: "Em desenvolvimento", tech: "Python, Django, PostgreSQL", title: "Manutenção Pro", desc: "Sistema completo para gestão de ordens de serviço, manutenção preventiva e corretiva, controle de peças e mão de obra." },
+      5: { category: "Desktop App", client: "Vanocode", status: "Em desenvolvimento", tech: "Electron, React, SQLite", title: "ImageManager", desc: "Aplicativo desktop para gerenciamento avançado de imagens com organização por tags, edição básica, conversão de formatos e backup em nuvem." },
+      6: { category: "Mobile App", client: "Vanocode", status: "Em desenvolvimento", tech: "React Native, Node.js, MongoDB", title: "Vanocode Finance", desc: "Aplicativo de gestão financeira pessoal com gráficos interativos, categorização de despesas, controle de orçamento e metas de economia." }
     };
-
-    const project = projects[projectId] || projects[1];
-
-    document.getElementById('project-category').textContent = project.category;
-    document.getElementById('project-client').textContent = project.client;
-    document.getElementById('project-date').textContent = project.date;
-    document.getElementById('project-tech').textContent = project.tech;
-    document.getElementById('project-title').textContent = project.title;
-    document.getElementById('project-description').textContent = project.desc;
-    document.getElementById('project-url').href = project.url;
-    document.getElementById('project-url').textContent = project.url !== "#" ? project.url : "Em desenvolvimento";
-
+    const p = projects[projectId] || projects[1];
+    document.getElementById('project-category').textContent = p.category;
+    document.getElementById('project-client').textContent = p.client;
+    document.getElementById('project-status').textContent = p.status;
+    document.getElementById('project-tech').textContent = p.tech;
+    document.getElementById('project-title').textContent = p.title;
+    document.getElementById('project-description').textContent = p.desc;
     AOS.init({ duration: 600, easing: 'ease-in-out', once: true });
   </script>
 </body>
