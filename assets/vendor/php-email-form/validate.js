@@ -10,7 +10,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     
     // Selecionar apenas formulários com a classe php-email-form que têm o atributo netlify
-    let forms = document.querySelectorAll('.php-email-form[netlify]');
+    let forms = document.querySelectorAll('form[netlify]');
     
     forms.forEach(function(form) {
       form.addEventListener('submit', function(event) {
