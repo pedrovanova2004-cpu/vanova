@@ -13,6 +13,40 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    /* Estilo para o ícone de preview (+) sobre as imagens */
+    .portfolio-details-slider .swiper-slide {
+      position: relative;
+    }
+
+    .preview-overlay {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      opacity: 0.8;
+    }
+
+    .preview-overlay i {
+      font-size: 24px;
+      color: white;
+    }
+
+    .preview-overlay:hover {
+      background: var(--accent-color);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 
 <body class="portfolio-details-page">
@@ -24,7 +58,7 @@
     </div>
 
     <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <h1 class="sitename">Vanocode</h1>
+      <h1 class="sitename">Pedro Vanova</h1>
     </a>
 
     <div class="social-links text-center">
@@ -37,13 +71,13 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Início</a></li>
-        <li><a href="#about"><i class="bi bi-person navicon"></i>Sobre</a></li>
-        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i>Currículo</a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i>Portfólio</a></li>
-        <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i>Serviços</a></li>
-        <li><a href="#testimonials"><i class="bi bi-chat-dots navicon"></i>Depoimentos</a></li>
-        <li><a href="#contact"><i class="bi bi-envelope navicon"></i>Contato</a></li>
+        <li><a href="index.html#hero"><i class="bi bi-house navicon"></i>Início</a></li>
+        <li><a href="index.html#about"><i class="bi bi-person navicon"></i>Sobre</a></li>
+        <li><a href="index.html#resume"><i class="bi bi-file-earmark-text navicon"></i>Currículo</a></li>
+        <li><a href="index.html#portfolio"><i class="bi bi-images navicon"></i>Portfólio</a></li>
+        <li><a href="index.html#services"><i class="bi bi-hdd-stack navicon"></i>Serviços</a></li>
+        <li><a href="index.html#testimonials"><i class="bi bi-chat-dots navicon"></i>Depoimentos</a></li>
+        <li><a href="index.html#contact"><i class="bi bi-envelope navicon"></i>Contato</a></li>
       </ul>
     </nav>
   </header>
@@ -65,15 +99,9 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
           <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper init-swiper">
-              <script type="application/json" class="swiper-config">
-                {"loop": true, "speed": 600, "autoplay": {"delay": 5000}, "slidesPerView": "auto", "pagination": {"el": ".swiper-pagination", "type": "bullets", "clickable": true}}
-              </script>
-              <div class="swiper-wrapper align-items-center">
-                <div class="swiper-slide"><img src="assets/img/portfolio/vano-marketplace.png" alt="VANO"
-                    onerror="this.src='assets/img/portfolio/vano-marketplace.png'"></div>
-                <div class="swiper-slide"><img src="assets/img/portfolio/erp-system.png" alt="ERP"
-                    onerror="this.src='assets/img/portfolio/erp-system.png'"></div>
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper" id="dynamic-slider-wrapper">
+                <!-- Os slides serão inseridos dinamicamente via JavaScript -->
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -112,29 +140,118 @@
       class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
 
+  <!-- Vendor Scripts -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/js/main.js"></script>
+
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const projectId = urlParams.get('project');
-    const projects = {
-      1: { category: "Marketplace", client: "Vanocode", status: "Em desenvolvimento", tech: "React Native, Node.js, MongoDB", title: "VANO Marketplace", desc: "Plataforma completa de compras online com integração de pagamentos, chat entre compradores e vendedores, e sistema de entregas. O novo jeito de comprar, vender e receber na palma da sua mão." },
-      2: { category: "Sistema ERP", client: "Vanocode", status: "Em desenvolvimento", tech: "PHP, Laravel, MySQL, React", title: "Vanocode ERP", desc: "Sistema de Gestão Empresarial completo com módulos de RH, Financeiro, Estoque, Vendas e Relatórios Gerenciais. Solução robusta para empresas de todos os portes." },
-      3: { category: "Educação", client: "Vanocode", status: "Em desenvolvimento", tech: "Flutter, Firebase, Node.js", title: "EduConnect", desc: "Aplicativo de aulas ao domicílio e online conectando professores e alunos. Agendamento de aulas, videoconferência integrada e sistema de pagamentos." },
-      4: { category: "Sistema de Gestão", client: "Vanocode", status: "Em desenvolvimento", tech: "Python, Django, PostgreSQL", title: "Manutenção Pro", desc: "Sistema completo para gestão de ordens de serviço, manutenção preventiva e corretiva, controle de peças e mão de obra." },
-      5: { category: "Desktop App", client: "Vanocode", status: "Em desenvolvimento", tech: "Electron, React, SQLite", title: "ImageManager", desc: "Aplicativo desktop para gerenciamento avançado de imagens com organização por tags, edição básica, conversão de formatos e backup em nuvem." },
-      6: { category: "Mobile App", client: "Vanocode", status: "Em desenvolvimento", tech: "React Native, Node.js, MongoDB", title: "Vanocode Finance", desc: "Aplicativo de gestão financeira pessoal com gráficos interativos, categorização de despesas, controle de orçamento e metas de economia." }
-    };
-    const p = projects[projectId] || projects[1];
-    document.getElementById('project-category').textContent = p.category;
-    document.getElementById('project-client').textContent = p.client;
-    document.getElementById('project-status').textContent = p.status;
-    document.getElementById('project-tech').textContent = p.tech;
-    document.getElementById('project-title').textContent = p.title;
-    document.getElementById('project-description').textContent = p.desc;
-    AOS.init({ duration: 600, easing: 'ease-in-out', once: true });
+    (function () {
+      // Mapeamento dos projetos (IDs 1, 2, 3 correspondem aos projetos do index.html)
+      const projectsData = {
+        1: {
+          category: "Marketplace",
+          client: "Vanocode",
+          status: "Em desenvolvimento",
+          tech: "React Native, Node.js, MongoDB",
+          title: "VANO Marketplace",
+          desc: "Plataforma completa de compras online com integração de pagamentos, chat entre compradores e vendedores, e sistema de entregas. O novo jeito de comprar, vender e receber na palma da sua mão.",
+          images: [
+            "assets/img/portfolio/vano-marketplace.png",
+            // Se houver uma segunda imagem (exemplo: versão mobile), você pode adicionar. 
+            // Por enquanto usamos a mesma imagem principal para não quebrar, 
+            // mas recomendável colocar outras imagens reais no futuro.
+            "assets/img/portfolio/vano-marketplace.png"
+          ]
+        },
+        2: {
+          category: "Sistema ERP",
+          client: "Vanocode",
+          status: "Em desenvolvimento",
+          tech: "PHP, Laravel, MySQL, React",
+          title: "Vanocode ERP",
+          desc: "Sistema de Gestão Empresarial completo com módulos de RH, Financeiro, Estoque, Vendas e Relatórios Gerenciais. Solução robusta para empresas de todos os portes.",
+          images: [
+            "assets/img/portfolio/erp-system.png",
+            "assets/img/portfolio/erp-system.png"
+          ]
+        },
+        3: {
+          category: "Educação",
+          client: "Vanocode",
+          status: "Em desenvolvimento",
+          tech: "Flutter, Firebase, Node.js",
+          title: "HT Professores Particulares",
+          desc: "Aplicativo de aulas ao domicílio e online conectando professores e alunos. Agendamento de aulas, videoconferência integrada e sistema de pagamentos.",
+          images: [
+            "assets/img/portfolio/edu-app.png",
+            "assets/img/portfolio/edu-app.png"
+          ]
+        }
+      };
+
+      // Obtém o ID do projeto via URL
+      const urlParams = new URLSearchParams(window.location.search);
+      let projectId = urlParams.get('project');
+      // Se não existir ou for inválido, assume o projeto 1
+      if (!projectId || !projectsData[projectId]) {
+        projectId = '1';
+      }
+
+      const project = projectsData[projectId];
+
+      // Atualiza as informações estáticas da página (título, categoria, etc)
+      document.getElementById('project-category').textContent = project.category;
+      document.getElementById('project-client').textContent = project.client;
+      document.getElementById('project-status').textContent = project.status;
+      document.getElementById('project-tech').textContent = project.tech;
+      document.getElementById('project-title').textContent = project.title;
+      document.getElementById('project-description').textContent = project.desc;
+
+      // Gera dinamicamente os slides do Swiper com as imagens do projeto
+      const sliderWrapper = document.getElementById('dynamic-slider-wrapper');
+      if (sliderWrapper && project.images && project.images.length) {
+        let slidesHtml = '';
+        project.images.forEach(imgSrc => {
+          // Cada slide contém um link para o lightbox (glightbox) e um ícone de preview (+)
+          slidesHtml += `
+            <div class="swiper-slide">
+              <a href="${imgSrc}" class="glightbox" data-gallery="portfolio-gallery">
+                <img src="${imgSrc}" class="img-fluid" alt="Imagem do projeto ${project.title}" style="width:100%;">
+                <div class="preview-overlay">
+                  <i class="bi bi-plus-lg"></i>
+                </div>
+              </a>
+            </div>
+          `;
+        });
+        sliderWrapper.innerHTML = slidesHtml;
+
+        // Inicializa o Swiper após inserir os slides
+        new Swiper('.portfolio-details-slider', {
+          loop: true,
+          speed: 600,
+          autoplay: { delay: 5000 },
+          slidesPerView: 'auto',
+          pagination: { el: '.swiper-pagination', type: 'bullets', clickable: true }
+        });
+
+        // Reinicializa o GLightbox nos novos elementos para permitir o preview em tela cheia
+        const lightbox = GLightbox({
+          selector: '.glightbox',
+          touchNavigation: true,
+          loop: true,
+          zoomable: true
+        });
+      }
+
+      // Inicializa o AOS (já carregado pelo main.js, mas garantimos)
+      if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+      }
+    })();
   </script>
 </body>
 
