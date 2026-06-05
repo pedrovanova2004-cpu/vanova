@@ -13,40 +13,7 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
-  <style>
-    /* Estilo para o ícone de preview (+) sobre as imagens */
-    .portfolio-details-slider .swiper-slide {
-      position: relative;
-    }
-
-    .preview-overlay {
-      position: absolute;
-      bottom: 15px;
-      right: 15px;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 10;
-      transition: all 0.3s ease;
-      opacity: 0.8;
-    }
-
-    .preview-overlay i {
-      font-size: 24px;
-      color: white;
-    }
-
-    .preview-overlay:hover {
-      background: var(--accent-color);
-      opacity: 1;
-      transform: scale(1.05);
-    }
-  </style>
+  <!-- CSS adicional removido (não há mais ícone de preview) -->
 </head>
 
 <body class="portfolio-details-page">
@@ -160,9 +127,6 @@
           desc: "Plataforma completa de compras online com integração de pagamentos, chat entre compradores e vendedores, e sistema de entregas. O novo jeito de comprar, vender e receber na palma da sua mão.",
           images: [
             "assets/img/portfolio/vano-marketplace.png",
-            // Se houver uma segunda imagem (exemplo: versão mobile), você pode adicionar. 
-            // Por enquanto usamos a mesma imagem principal para não quebrar, 
-            // mas recomendável colocar outras imagens reais no futuro.
             "assets/img/portfolio/vano-marketplace.png"
           ]
         },
@@ -195,14 +159,13 @@
       // Obtém o ID do projeto via URL
       const urlParams = new URLSearchParams(window.location.search);
       let projectId = urlParams.get('project');
-      // Se não existir ou for inválido, assume o projeto 1
       if (!projectId || !projectsData[projectId]) {
         projectId = '1';
       }
 
       const project = projectsData[projectId];
 
-      // Atualiza as informações estáticas da página (título, categoria, etc)
+      // Atualiza as informações do projeto
       document.getElementById('project-category').textContent = project.category;
       document.getElementById('project-client').textContent = project.client;
       document.getElementById('project-status').textContent = project.status;
@@ -210,26 +173,23 @@
       document.getElementById('project-title').textContent = project.title;
       document.getElementById('project-description').textContent = project.desc;
 
-      // Gera dinamicamente os slides do Swiper com as imagens do projeto
+      // Gera dinamicamente os slides do Swiper com as imagens do projeto (sem ícone de preview)
       const sliderWrapper = document.getElementById('dynamic-slider-wrapper');
       if (sliderWrapper && project.images && project.images.length) {
         let slidesHtml = '';
         project.images.forEach(imgSrc => {
-          // Cada slide contém um link para o lightbox (glightbox) e um ícone de preview (+)
+          // Cada slide contém apenas a imagem dentro de um link com glightbox
           slidesHtml += `
             <div class="swiper-slide">
               <a href="${imgSrc}" class="glightbox" data-gallery="portfolio-gallery">
                 <img src="${imgSrc}" class="img-fluid" alt="Imagem do projeto ${project.title}" style="width:100%;">
-                <div class="preview-overlay">
-                  <i class="bi bi-plus-lg"></i>
-                </div>
               </a>
             </div>
           `;
         });
         sliderWrapper.innerHTML = slidesHtml;
 
-        // Inicializa o Swiper após inserir os slides
+        // Inicializa o Swiper
         new Swiper('.portfolio-details-slider', {
           loop: true,
           speed: 600,
@@ -238,8 +198,8 @@
           pagination: { el: '.swiper-pagination', type: 'bullets', clickable: true }
         });
 
-        // Reinicializa o GLightbox nos novos elementos para permitir o preview em tela cheia
-        const lightbox = GLightbox({
+        // Inicializa o GLightbox para os novos elementos
+        GLightbox({
           selector: '.glightbox',
           touchNavigation: true,
           loop: true,
@@ -247,7 +207,6 @@
         });
       }
 
-      // Inicializa o AOS (já carregado pelo main.js, mas garantimos)
       if (typeof AOS !== 'undefined') {
         AOS.refresh();
       }
